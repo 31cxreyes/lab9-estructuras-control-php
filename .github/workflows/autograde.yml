@@ -1,0 +1,43 @@
+name: Autograde Lab 9
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Descargar autograde y workflow oficiales (anti-manipulación)
+        run: |
+          BASE=https://raw.githubusercontent.com/SarmientoEdu/lab9-estructuras-control-php/main
+          if curl -fsSL "$BASE/autograde.php" -o autograde_oficial.php \
+             && curl -fsSL "$BASE/.github/workflows/autograde.yml" -o workflow_oficial.yml; then
+            echo "AUTOGRADE_FUENTE=oficial" >> "$GITHUB_ENV"
+            cmp -s autograde.php autograde_oficial.php || echo "AUTOGRADE_MODIFICADO=1" >> "$GITHUB_ENV"
+            cmp -s .github/workflows/autograde.yml workflow_oficial.yml || echo "WORKFLOW_MODIFICADO=1" >> "$GITHUB_ENV"
+          else
+            echo "AUTOGRADE_FUENTE=local" >> "$GITHUB_ENV"
+            cp autograde.php autograde_oficial.php
+          fi
+
+      - name: Ejecutar autograde
+        run: php autograde_oficial.php
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resultado-autograde
+          path: resultado_autograde.json
