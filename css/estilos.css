@@ -1,31 +1,109 @@
-/* Lab 9 · estilos base (puedes ampliarlos) */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  background: #f4f6f9;
-  color: #222;
-}
-header, footer {
-  background: #1f3a5f;
-  color: #fff;
-  padding: 12px 24px;
-}
-main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 16px;
-}
-section {
-  background: #fff;
-  border-radius: 8px;
-  padding: 8px 16px 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
-}
-.resultado {
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: #eef1f5;
+/* Estilos del Laboratorio 9
+   Carlos Coba */
+
+:root {
+    --tinta: #2f2a26;
+    --papel: #fffdf9;
+    --linea: #e2d8cc;
+    --acento: #b5651d;
 }
 
-/* TODO CSS-5: define aquí las clases .ok (fondo verde claro) y .error (fondo rojo claro) */
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: var(--tinta);
+    background: var(--papel);
+    margin: 0;
+    padding: 24px 16px 48px;
+    line-height: 1.5;
+}
+
+header {
+    border-radius: 6px;
+}
+
+main {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+section {
+    background: #ffffff;
+    border: 1px solid var(--linea);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+}
+
+section h2 {
+    font-size: 17px;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    color: var(--acento);
+    border-bottom: 1px dashed var(--linea);
+}
+
+p {
+    margin: 6px 0;
+}
+
+#autor {
+    font-size: 14px;
+    color: #6b5d50;
+}
+
+.nota {
+    font-size: 13px;
+    color: #6b5d50;
+}
+
+/* resultado de las notas */
+.resultado {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13.5px;
+    padding: 9px 10px;
+    border-radius: 4px;
+    border-left: 4px solid #999999;
+}
+
+.ok {
+    background-color: #d4edda;
+    border-left-color: #2e7d32;
+}
+
+.error {
+    background-color: #f8d7da;
+    border-left-color: #b3261e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 10px 0 12px;
+}
+
+th {
+    text-align: left;
+    background: #f6efe6;
+    font-weight: 600;
+}
+
+th, td {
+    border: 1px solid var(--linea);
+    padding: 6px 10px;
+}
+
+td:first-child {
+    font-family: Consolas, "Courier New", monospace;
+    width: 50%;
+}
+
+#firma {
+    max-width: 780px;
+    margin: 26px auto 0;
+    padding-top: 12px;
+    font-size: 13px;
+    color: #6b5d50;
+    text-align: center;
+    border-top: 1px solid var(--linea);
+}
